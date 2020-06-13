@@ -22,6 +22,7 @@ formulario.addEventListener('submit', e => {
 
     if (monedaSelected && cryptoSelected) {
         //campos llenos, continuar
+        ui.removeOldResult();
         ui.showLoader(true);
         api.getCryptoValueBySymbol(monedaSelected, cryptoSelected).then(conversion => {
             setTimeout(()=>{

@@ -22,13 +22,11 @@ class Interface {
     }
 
     showResult(fiatSymbol, cryptoSymbol, conversionData){
-        console.log(conversionData);
-        
         const price = conversionData.PRICE.toFixed(2);
         const pct = conversionData.CHANGEPCTDAY.toFixed(2);
         const lastUpdated = new Date(conversionData.LASTUPDATE * 1000).toLocaleDateString('es-AR');
         const htmlTemplate = `
-            <div class="card bg-warning">
+            <div id="crypto-result" class="card bg-warning">
                 <div class="card-body text-light">
                     <h2 class="card-title">Resultado:</h2>
                     <p>El precio de ${conversionData.FROMSYMBOL} a moneda 
@@ -40,6 +38,13 @@ class Interface {
         `;
 
         document.getElementById('resultado').innerHTML = htmlTemplate;
+    }
+
+    removeOldResult(){
+        const oldResult = document.getElementById('crypto-result');
+        if (oldResult) {
+            oldResult.remove();
+        }
     }
 
     showLoader(flag){
